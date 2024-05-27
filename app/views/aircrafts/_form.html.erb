@@ -1,0 +1,12 @@
+<div class="container">
+  <%= simple_form_for aircraft, html: {class: 'p-3 border rounded d-flex flex-column justify-center'} do |f| %>
+    <%= f.input :name %>
+    <%= f.input :category, collection: Aircraft::CATEGORIES %>
+    <%= f.input :description %>
+    <%= f.input :capacity %>
+    <%= f.input :range %>
+    <%= f.input :state, collection: Aircraft::STATES %>
+    <%= f.input :day_price %>
+    <%= f.submit class: 'btn btn-primary m-auto'%>
+  <% end %>
+</div>
