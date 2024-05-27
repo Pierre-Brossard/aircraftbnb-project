@@ -11,8 +11,19 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+
+    <header>
+      <%= link_to "Home Page", root_path, class: "home-btn" %>
+
+      <div class="user-action">
+        <%= link_to "My profile"%>
+        <% if user_signed_in? %>
+          <%= link_to '<i class="fa-solid fa-right-from-bracket"></i>'.html_safe, destroy_user_session_path, data: { turbo_method: :delete }, class: 'log-btn' %>
+        <% else %>
+          <%= link_to '<i class="fa-solid fa-right-to-bracket"></i>'.html_safe, new_user_session_path, class: 'log-btn' %>
+        <% end %>
+      </div>
+    </header>
     <%= yield %>
   </body>
 </html>
