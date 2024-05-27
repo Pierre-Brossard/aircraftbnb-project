@@ -1,12 +1,15 @@
-.navbar-lewagon {
+header{
+  text-align: center;
+  display: flex;
   justify-content: space-between;
-  background: white;
+  padding: 2em;
+  font-size: 1.2em;
+
+  a:hover{
+    color: rgb(205, 140, 19);
+  }
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
-
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+.log-btn{
+  margin: 0 2em;
 }
