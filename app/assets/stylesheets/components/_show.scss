@@ -1,0 +1,16 @@
+.aircraft-category {
+  position: relative;
+  font-size: 1rem;
+}
+
+.aircraft-category-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -20px;
+  right: 50px;
+}
