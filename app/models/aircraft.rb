@@ -10,4 +10,7 @@ class Aircraft < ApplicationRecord
   validates :capacity, presence: true
   validates :day_price, presence: true
   validates :range, presence: true
+
+  # link to active record
+  has_one_attached :photo
 end
