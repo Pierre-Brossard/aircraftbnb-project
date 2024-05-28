@@ -24,6 +24,6 @@ class AircraftsController < ApplicationController
   private
 
   def aircraft_params
-    params.require(:aircraft).permit(:name, :category, :description, :capacity, :range, :state, :day_price)
+    params.require(:aircraft).permit(:name, :category, :description, :capacity, :range, :state, :day_price, :photo)
   end
 end
