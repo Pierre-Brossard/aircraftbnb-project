@@ -3,7 +3,6 @@ class AircraftsController < ApplicationController
 
   def index
     @aircrafts = Aircraft.all
-    @bookings = Booking.all
   end
 
   def show
