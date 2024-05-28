@@ -26,30 +26,46 @@ AIRCRAFT_NAMES = [
     'Westland Limousine'
 ]
 
-User.destroy_all
-Aircraft.destroy_all
+Booking.delete_all
+Aircraft.delete_all
+User.delete_all
 
 
-user = User.new
-user.name = 'Maria'
-user.email = 'test@example.com'
-user.encrypted_password = '#$taawktljasktlw4aaglj'
-user.save!
+user = User.create!(name: 'John Doe', email: 'john@gmail.com', password: 'topsecret', password_confirmation: 'topsecret')
+user_bis = User.create!(name: 'Maria', email: 'maria@gmail.com', password: 'topsecret', password_confirmation: 'topsecret')
 
-user_bis = User.new
-user_bis.name = 'Bobby'
-user_bis.email = 'test2@example.com'
-user_bis.encrypted_password = '#$taawktlPPPPtlw4aaglj'
-user_bis.save!
-
-8.times do
+AIRCRAFT_NAMES.each do |name|
   Aircraft.create!(
-    name: AIRCRAFT_NAMES.sample,
+    name: name,
     category: Aircraft::CATEGORIES.sample,
     description: 'An empty description',
-    capacity: (50..3500).sample,
-    range: (100..150_000).sample,
+    capacity: (50..3500).to_a.sample,
+    range: (100..150_000).to_a.sample,
     state: Aircraft::STATES.sample,
-    day_price: (1000..100_000).sample
+    day_price: (1000..100_000).to_a.sample,
+    user: [user, user_bis].sample
   )
-en
+end
+
+buyer = User.create!(name: 'iamabuyer', email: 'buy@gmail.com', password: 'topsecret', password_confirmation: 'topsecret')
+aircraft = Aircraft.last
+
+Booking.create!(
+  pending: 'PENDING',
+  start_date: Date.new(2024, 10, 10),
+  end_date: Date.new(2024, 10, 20),
+  total_price: aircraft.day_price * 10,
+  aircraft: aircraft,
+  user: buyer
+)
+
+aircraft = Aircraft.first
+
+Booking.create!(
+  pending: 'ACCEPTED',
+  start_date: Date.new(2024, 12, 10),
+  end_date: Date.new(2024, 12, 20),
+  total_price: aircraft.day_price * 10,
+  aircraft: aircraft,
+  user: buyer
+)
