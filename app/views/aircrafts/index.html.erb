@@ -1,5 +1,4 @@
 <h1>Annonces: </h1>
-
 <ul class="row">
   <% @aircrafts.each do |aircraft| %>
     <li class="col-lg-3" >
@@ -12,9 +11,14 @@
           <p class="card-text"><%= aircraft.state %></p>
           <div>
             <%= link_to "View details", aircraft_path(aircraft), class: "btn btn-primary"%>
+            <%= link_to "Reserver", new_aircraft_booking_path(aircraft), class: "btn btn-danger"%>
           </div>
         </div>
       </div>
     </li>
   <% end %>
 </ul>
+
+<% @bookings.each do |b| %>
+  <%= b.total_price %>
+<% end %>

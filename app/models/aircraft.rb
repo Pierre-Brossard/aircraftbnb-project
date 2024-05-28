@@ -2,6 +2,7 @@ class Aircraft < ApplicationRecord
   CATEGORIES = ['Planes', 'Helicopter', 'Zeppelin']
   STATES =['Used', 'Broken', 'Can fly', 'Perfect condition']
   belongs_to :user
+  has_many :bookings, dependent: :destroy
 
   validates :name, uniqueness: true, presence: true
   validates :category, presence: true, inclusion: { in: Aircraft::CATEGORIES }

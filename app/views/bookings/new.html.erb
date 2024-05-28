@@ -1,0 +1,13 @@
+<div data-controller="add-bookings">
+  <%= simple_form_for [@aircraft, @booking], html: {class: 'p-3 border rounded d-flex flex-column justify-center'} do |f|  %>
+    <%= f.hidden_field :pending, value: "pending" %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.input :start_date, as: :string, input_html: {data: {controller: "datepicker", action: 'input->add-bookings#set_total_price'}}%>
+    <%= f.input :end_date, as: :string, input_html: {data: {controller: "datepicker", action: 'input->add-bookings#set_total_price'}} %>
+    <input type="hidden" id="day-price" value=<%= @aircraft.day_price %>>
+    <p>Total price: </p>
+    <p id="total-price-display"></p>
+    <%= f.hidden_field :total_price, id: "total-price"%>
+    <%= f.submit "Submit", disable_with: 'Submiting...' %>
+  <% end %>
+</div>
