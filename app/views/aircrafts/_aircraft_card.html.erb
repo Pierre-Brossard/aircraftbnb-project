@@ -1,11 +1,11 @@
 <div class="aircraft-card card mt-4 rounded-4">
   <% if aircraft.photo.attached? %>
     <%=
-      image_tag "https://res.cloudinary.com/dlwesrqwb/image/upload/v1716894549/development/#{aircraft.photo.key}.jpg",
+      cl_image_tag aircraft.photo.key,
       height: 300,
       width: 400,
       crop: :fill,
-      class: 'card-img-top img-fluid rounded-top-4'
+      class: 'card-img-top img-fluid rounded-top-4 img-center'
     %>
   <% end %>
   <div class="card-body">
