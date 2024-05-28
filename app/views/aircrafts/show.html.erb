@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="aircraft-card card mt-4 rounded-4 p-3">
+    <h2 class="card-text text-secondary text-uppercase"><strong><%= @aircraft.name %></strong></h2>
+    <div class="aircraft_picture bg-grey w-100 border border-bottom" style="width: 100%; height: 300px;">
+      <img src="<%= %>" class="card-img-top" alt="<%= @aircraft.name %>">
+    </div>
+    <div class="d-flex flex-column card-body aircraft-category">
+      <div class="aircraft-category-icon bg-primary shadow-sm rounded-circle"><i class="fa-solid fa-plane text-white"></i></div>
+      <p class="card-text">CATEGORY : <strong><%= @aircraft.category %></strong></p>
+      <p class="card-text">PRICE : <strong class="text-success"><%= @aircraft.day_price %></strong><small> € / jour</small></p>
+      <p class="card-text justify-end">STATE : <strong><%= @aircraft.state %></strong></p>
+    </div>
+  </div>
+  <div class="d-flex justify-content-between mt-3 p-0">
+    <%= link_to "Back", aircrafts_path, class:"btn btn-outline-secondary" %>
+    <%= link_to "Delete", aircrafts_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure ?" }, class:"btn btn-outline-danger"  %>
+  </div>
+</div>
