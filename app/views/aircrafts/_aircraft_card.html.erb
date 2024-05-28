@@ -1,0 +1,20 @@
+<div class="aircraft-card card mt-4 rounded-4">
+  <% if aircraft.photo.attached? %>
+    <%=
+      image_tag "https://res.cloudinary.com/dlwesrqwb/image/upload/v1716894549/development/#{aircraft.photo.key}.jpg",
+      height: 300,
+      width: 400,
+      crop: :fill,
+      class: 'card-img-top img-fluid rounded-top-4'
+    %>
+  <% end %>
+  <div class="card-body">
+    <h4><%= aircraft.name %></h4>
+    <p class="card-text"><%= aircraft.category %></p>
+    <p class="card-text"><%= aircraft.day_price%>€ / jour</p>
+    <p class="card-text"><%= aircraft.state %></p>
+    <div>
+      <%= link_to "View details", aircraft_path(aircraft), class: "btn btn-primary"%>
+    </div>
+  </div>
+</div>

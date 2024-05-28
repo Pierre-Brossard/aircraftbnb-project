@@ -7,7 +7,7 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-
+ require "open-uri"
 
 AIRCRAFT_NAMES = [
       'Airco DH.4A',
@@ -26,6 +26,13 @@ AIRCRAFT_NAMES = [
     'Westland Limousine'
 ]
 
+AIRCRAFT_PATHS = [
+  "https://res.cloudinary.com/dlwesrqwb/image/upload/v1716901388/development/Cessna_172S_Skyhawk__G-JMKE___45077563364_eunhxl.jpg",
+  "https://res.cloudinary.com/dlwesrqwb/image/upload/v1716901388/development/LAPD_Bell_206_Jetranger_nrusrk.jpg",
+  "https://res.cloudinary.com/dlwesrqwb/image/upload/v1716901388/development/Airbus_A400M_Atlas__ZM400__-_ASCOT482_uwgoz2.jpg",
+  "https://res.cloudinary.com/dlwesrqwb/image/upload/v1716894549/development/slfizlcluj3aodg0if0gc0hjgzfr.jpg"
+]
+
 Booking.delete_all
 Aircraft.delete_all
 User.delete_all
@@ -35,7 +42,7 @@ user = User.create!(name: 'John Doe', email: 'john@gmail.com', password: 'topsec
 user_bis = User.create!(name: 'Maria', email: 'maria@gmail.com', password: 'topsecret', password_confirmation: 'topsecret')
 
 AIRCRAFT_NAMES.each do |name|
-  Aircraft.create!(
+  new_aircraft = Aircraft.new(
     name: name,
     category: Aircraft::CATEGORIES.sample,
     description: 'An empty description',
@@ -45,7 +52,10 @@ AIRCRAFT_NAMES.each do |name|
     day_price: (1000..100_000).to_a.sample,
     user: [user, user_bis].sample
   )
+  new_aircraft.photo.attach(io: URI.open(AIRCRAFT_PATHS.sample), filename: 'aircraft_photo.png')
+  new_aircraft.save!
 end
+
 
 buyer = User.create!(name: 'iamabuyer', email: 'buy@gmail.com', password: 'topsecret', password_confirmation: 'topsecret')
 aircraft = Aircraft.last

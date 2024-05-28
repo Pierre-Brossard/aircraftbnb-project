@@ -2,23 +2,7 @@
 <ul class="row">
   <% @aircrafts.each do |aircraft| %>
     <li class="col-lg-3" >
-      <div class="aircraft-card card mt-4 rounded-4">
-        <%# <img src="/images/cards/1.jpg" class="card-img-top" alt="green iguana" /> %>
-        <div class="card-body">
-          <h4><%= aircraft.name %></h4>
-          <p class="card-text"><%= aircraft.category %></p>
-          <p class="card-text"><%= aircraft.day_price%>€ / jour</p>
-          <p class="card-text"><%= aircraft.state %></p>
-          <div>
-            <%= link_to "View details", aircraft_path(aircraft), class: "btn btn-primary"%>
-            <%= link_to "Reserver", new_aircraft_booking_path(aircraft), class: "btn btn-danger"%>
-          </div>
-        </div>
-      </div>
+      <%= render 'aircraft_card', aircraft: aircraft %>
     </li>
   <% end %>
 </ul>
-
-<% @bookings.each do |b| %>
-  <%= b.total_price %>
-<% end %>

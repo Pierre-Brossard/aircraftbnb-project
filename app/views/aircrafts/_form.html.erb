@@ -7,6 +7,7 @@
     <%= f.input :range %>
     <%= f.input :state, collection: Aircraft::STATES %>
     <%= f.input :day_price %>
+    <%= f.input :photo, as: :file %>
     <%= f.submit class: 'btn btn-primary m-auto'%>
   <% end %>
 </div>

@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="aircraft-card card mt-4 rounded-4 p-3" style="<%="background-image: url('https://res.cloudinary.com/dlwesrqwb/image/upload/v1716904568/development/#{@aircraft.photo.key}.jpg');"%>">
+    <h2 class="card-text text-primary text-uppercase"><strong><%= @aircraft.name %></strong></h2>
+    <div  class="aircraft-picture bg-grey w-100 border-bottom"
+
+    ></div>
+    <div class="d-flex flex-column card-body aircraft-category bg-light opacity-75">
+      <div class="aircraft-category-icon bg-primary shadow-sm rounded-circle"><i class="fa-solid fa-plane text-white"></i></div>
+      <p class="card-text">CATEGORY : <strong><%= @aircraft.category %></strong></p>
+      <p class="card-text">PRICE : <strong class="text-success"><%= @aircraft.day_price %></strong><small> € / jour</small></p>
+      <p class="card-text justify-end">STATE : <strong><%= @aircraft.state %></strong></p>
+    </div>
+  </div>
+  <div class="d-flex justify-content-between mt-3 p-0">
+    <%= link_to "Back", aircrafts_path, class:"btn btn-outline-secondary" %>
+    <%= link_to "Delete", aircrafts_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure ?" }, class:"btn btn-outline-danger"  %>
+  </div>
+</div>
