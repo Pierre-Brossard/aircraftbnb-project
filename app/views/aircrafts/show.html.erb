@@ -28,3 +28,15 @@
     <% end %>
   </div>
 </div>
+<div class="row">
+  <% if current_user == @aircraft.user and @aircraft.bookings.length > 0 %>
+    <h2 class='mt-2'>Booking offers</h2>
+    <div class="border rounded p-3">
+      <div class="d-flex w-100 flex-column gap-2 p-2">
+        <% @aircraft.bookings.each do |booking| %>
+            <%= render 'users/booking_card', booking: booking %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

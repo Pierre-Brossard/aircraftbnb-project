@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_aircraft, only: [:new, :create]
-  before_action :set_bookingn, only: [:confirm, :deny, :destroy]
+  before_action :set_booking, only: [:confirm, :deny]
 
   def new
     @booking = Booking.new

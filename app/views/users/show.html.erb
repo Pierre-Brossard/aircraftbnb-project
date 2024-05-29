@@ -85,19 +85,8 @@
 </div>
 
 <% if current_user == @user %>
-  <div class="row">
-    <% if @aircrafts.length > 0%>
-      <h2>Aircrafts</h2>
-      <div class="border rounded p-3">
-        <div class="d-flex w-100 flex-wrap gap-1">
-          <% @aircrafts.each do |aircraft| %>
-              <%= render 'aircrafts/aircraft_card', aircraft: aircraft %>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
     <% if @bookings.length > 0 %>
-      <h2 class='mt-2'>Bookings</h2>
+      <h2 class='mt-2'>My bookings</h2>
       <div class="border rounded p-3">
         <div class="d-flex w-100 flex-column gap-2 p-2">
           <% @bookings.each do |booking| %>
@@ -107,11 +96,22 @@
       </div>
     <% end %>
     <% if @my_bookings.length > 0 %>
-      <h2 class='mt-2'>My Bookings</h2>
+      <h2 class='mt-2'>Bookings</h2>
       <div class="border rounded p-3">
         <div class="d-flex w-100 flex-column gap-2 p-2">
           <% @my_bookings.each do |booking| %>
               <%= render 'booking_card', booking: booking %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <div class="row">
+    <% if @aircrafts.length > 0%>
+      <h2>Aircrafts</h2>
+      <div class="border rounded p-3">
+        <div class="d-flex w-100 flex-wrap gap-1">
+          <% @aircrafts.each do |aircraft| %>
+              <%= render 'aircrafts/aircraft_card', aircraft: aircraft %>
           <% end %>
         </div>
       </div>
