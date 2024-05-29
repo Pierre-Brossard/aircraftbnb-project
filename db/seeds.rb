@@ -50,7 +50,9 @@ user_bis = User.create!(name: 'Maria', email: 'maria@gmail.com', password: 'tops
     range: (100..150_000).to_a.sample,
     state: Aircraft::STATES.sample,
     day_price: (1000..100_000).to_a.sample,
-    user: [user, user_bis].sample
+    user: [user, user_bis].sample,
+    start: Date.new(2024, 05, 24),
+    end: Date.new(2024, 05, 30),
   )
   new_aircraft.photo.attach(io: URI.open(AIRCRAFT_PATHS.sample), filename: 'aircraft_photo.png')
   new_aircraft.save!
