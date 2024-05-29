@@ -54,7 +54,7 @@ user_bis = User.create!(name: 'Maria', email: 'maria@gmail.com', password: 'tops
     start: Date.new(2024, 05, 24),
     end: Date.new(2024, 05, 30),
   )
-  new_aircraft.photo.attach(io: URI.open(AIRCRAFT_PATHS.sample), filename: 'aircraft_photo.png')
+  new_aircraft.photo.attach(io: URI.open(AIRCRAFT_PATHS[index]), filename: 'aircraft_photo.png')
   new_aircraft.save!
 end
 
