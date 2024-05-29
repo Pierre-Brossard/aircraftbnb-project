@@ -23,7 +23,6 @@ class AircraftsController < ApplicationController
   end
 
   def destroy
-    raise
     @aircraft.destroy
     redirect_to aircrafts_path, status: :see_other
   end
