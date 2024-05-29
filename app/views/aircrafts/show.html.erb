@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="aircraft-card card mt-4 rounded-4 p-3" style="background-image: url('<%= cl_image_path @aircraft.photo.key %>');">
+  <div class="card mt-4 rounded-4 p-3" style="background-image: url('<%= cl_image_path @aircraft.photo.key %>'); background-repeat: no-repeat; background-size: cover;">
     <h2 class="card-text text-primary text-uppercase"><strong><%= @aircraft.name %></strong></h2>
     <div  class="aircraft-picture bg-grey w-100 border-bottom"
 
@@ -27,4 +27,16 @@
       <%= link_to "Delete", aircraft_path(@aircraft), data: { turbo_method: :delete, turbo_confirm: "Are you sure ?" }, class:"btn btn-outline-danger"  %>
     <% end %>
   </div>
+</div>
+<div class="row">
+  <% if current_user == @aircraft.user and @aircraft.bookings.length > 0 %>
+    <h2 class='mt-2'>Booking offers</h2>
+    <div class="border rounded p-3">
+      <div class="d-flex w-100 flex-column gap-2 p-2">
+        <% @aircraft.bookings.each do |booking| %>
+            <%= render 'users/booking_card', booking: booking %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 </div>

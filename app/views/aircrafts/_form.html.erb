@@ -1,6 +1,10 @@
 <div class="container">
   <%= simple_form_for aircraft, html: {class: 'p-3 border rounded d-flex flex-column justify-center'} do |f| %>
     <%= f.input :name %>
+    <%= f.input :location,
+      input_html: {data: {location_autocomplete_target: "location"}, class:"d-none"},
+      wrapper_html: {data: {controller: "location-autocomplete", location_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
+    %>
     <%= f.input :category, collection: Aircraft::CATEGORIES %>
     <%= f.input :description %>
     <%= f.input :capacity %>

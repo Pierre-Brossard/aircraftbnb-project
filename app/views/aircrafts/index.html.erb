@@ -1,8 +1,20 @@
-<h1>Annonces: </h1>
-<ul class="row">
-  <% @aircrafts.each do |aircraft| %>
-    <li class="col-lg-3" >
-      <%= render 'aircraft_card', aircraft: aircraft %>
-    </li>
-  <% end %>
-</ul>
+<div class="row">
+
+  <h1>Annonces: </h1>
+
+  <ul class="d-flex flex-wrap gap-5 col-lg-7">
+    <% @aircrafts.each do |aircraft| %>
+      <li class="col-sm-5" >
+        <%= render 'aircraft_card', aircraft: aircraft %>
+      </li>
+    <% end %>
+  </ul>
+
+  <div  class="col-lg-5 mt-4 rounded-5 border"
+        style="height: 95vh; top: 2em; position: sticky;"
+        data-controller="map"
+        data-map-markers-value="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
+
+</div>
