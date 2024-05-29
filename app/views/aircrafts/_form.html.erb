@@ -8,6 +8,8 @@
     <%= f.input :state, collection: Aircraft::STATES %>
     <%= f.input :day_price %>
     <%= f.input :photo, as: :file %>
+    <%= f.input :start, as: :string, input_html: {data: {controller: 'datepicker'}}%>
+    <%= f.input :end, as: :string ,input_html: {data: {controller: 'datepicker'}} %>
     <%= f.submit class: 'btn btn-primary m-auto'%>
   <% end %>
 </div>

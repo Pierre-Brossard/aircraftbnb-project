@@ -1,13 +1,30 @@
 <div data-controller="add-bookings">
+  <h4>L'avion est disponible du <%= @aircraft.start %> au <%= @aircraft.end %></h4>
   <%= simple_form_for [@aircraft, @booking], html: {class: 'p-3 border rounded d-flex flex-column justify-center'} do |f|  %>
     <%= f.hidden_field :pending, value: "pending" %>
     <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.input :start_date, as: :string, input_html: {data: {controller: "datepicker", action: 'input->add-bookings#set_total_price'}}%>
-    <%= f.input :end_date, as: :string, input_html: {data: {controller: "datepicker", action: 'input->add-bookings#set_total_price'}} %>
+    <%= f.input :start_date, as: :string, input_html:
+        {data:
+          {
+            controller: "datepicker",
+            action: 'input->add-bookings#set_total_price input->add-bookings#check_dates'
+          }
+        }%>
+    <%= f.input :end_date, as: :string, input_html:
+        {data:
+          {
+            controller: "datepicker",
+            action: 'input->add-bookings#set_total_price input->add-bookings#check_dates'
+          }
+        } %>
     <input type="hidden" id="day-price" value=<%= @aircraft.day_price %>>
     <p>Total price: </p>
     <p id="total-price-display"></p>
-    <%= f.hidden_field :total_price, id: "total-price"%>
-    <%= f.submit "Submit", disable_with: 'Submiting...' %>
+    <%= f.hidden_field :total_price, id: "total-price" %>
+    <h5 class="text-danger" id="alert" style="display: none">Merci de rentrer des dates valides</h3>
+    <%= f.submit "Submit", disable_with: 'Submiting...', id: "submit" %>
+    <input type="hidden" id="aircraft-start" value=<%= @aircraft.start %>>
+    <input type="hidden" id="aircraft-end" value=<%= @aircraft.end %>>
   <% end %>
+
 </div>
