@@ -4,8 +4,8 @@ class UsersController < ApplicationController
 
   def show
     @aircrafts = current_user.aircrafts
-    @my_bookings = current_user.bookings
-    @bookings = current_user.aircrafts.bookings
+    @my_bookings = current_user.my_bookings
+    @bookings = current_user.bookings
   end
 
   # def new

@@ -14,5 +14,8 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: :show
-  resources :bookings, only: [:destroy, :update]
+  resources :bookings, only: [:update, :destroy]
+  patch '/bookings/:id/confirm', to: "bookings#confirm", as: :confirm_booking
+  patch '/bookings/:id/deny', to: "bookings#deny", as: :deny_booking
+
 end

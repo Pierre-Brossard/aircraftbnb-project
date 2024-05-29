@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_aircraft, only: [:new, :create]
-  before_action :set_booking, only: [:]
+  before_action :set_bookingn, only: [:confirm, :deny, :destroy]
 
   def new
     @booking = Booking.new
@@ -18,11 +18,23 @@ class BookingsController < ApplicationController
   end
 
   def update
+    raise
   end
 
-  def destroy
-    @booking.destroy
-    redirect_to user_path(current_user), status: :see_other
+  def confirm
+    if current_user == @booking.aircraft.user
+      @booking.pending = 'confirmed'
+    end
+    @booking.save
+    redirect_to user_path(current_user)
+  end
+
+  def deny
+    if current_user == @booking.aircraft.user
+      @booking.pending = 'denied'
+    end
+    @booking.save
+    redirect_to user_path(current_user)
   end
 
   private
