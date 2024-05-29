@@ -3,6 +3,9 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show destroy]
 
   def show
+    @aircrafts = current_user.aircrafts
+    @my_bookings = current_user.my_bookings
+    @bookings = current_user.bookings
   end
 
   # def new

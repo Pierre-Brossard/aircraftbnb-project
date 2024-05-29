@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   resources :aircrafts do
     resources :bookings, only: [:new, :create]
   end
-  
+
   resources :users, only: :show
+  resources :bookings, only: [:update]
+  patch '/bookings/:id/confirm', to: "bookings#confirm", as: :confirm_booking
+  patch '/bookings/:id/deny', to: "bookings#deny", as: :deny_booking
+
 end
