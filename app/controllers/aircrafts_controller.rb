@@ -2,7 +2,7 @@ class AircraftsController < ApplicationController
   before_action :set_aircraft, only: %i[show destroy]
 
   def index
-    @aircrafts = Aircraft.all
+    @aircrafts = Aircraft.where('user_id != ?', current_user.id)
 
     @markers = @aircrafts.geocoded.map do |aircraft|
       {
