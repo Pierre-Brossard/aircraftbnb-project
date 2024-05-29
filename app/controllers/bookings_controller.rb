@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_aircraft, only: [:new, :create]
+  before_action :set_booking, only: [:confirm, :deny]
 
   def new
     @booking = Booking.new
@@ -16,6 +17,26 @@ class BookingsController < ApplicationController
     end
   end
 
+  def update
+    raise
+  end
+
+  def confirm
+    if current_user == @booking.aircraft.user
+      @booking.pending = 'confirmed'
+    end
+    @booking.save
+    redirect_to user_path(current_user)
+  end
+
+  def deny
+    if current_user == @booking.aircraft.user
+      @booking.pending = 'denied'
+    end
+    @booking.save
+    redirect_to user_path(current_user)
+  end
+
   private
 
   def booking_params
@@ -24,5 +45,9 @@ class BookingsController < ApplicationController
 
   def set_aircraft
     @aircraft = Aircraft.find(params[:aircraft_id])
+  end
+
+  def set_booking
+    @booking = Booking.find(params[:id])
   end
 end

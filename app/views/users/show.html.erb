@@ -1,5 +1,4 @@
 <div class="row">
-
   <div class="col-lg-4">
     <div class="card mb-4">
       <div class="card-body text-center">
@@ -28,79 +27,94 @@
     </div> %>
   </div>
 
-  <div class="col-lg-8">
-    <div class="card mb-4 bg-white">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-sm-3">
-            <p class="mb-0">UserName</p>
-          </div>
-          <div class="col-sm-8">
-            <p class="text-muted mb-0"><%= @user.name %></p>
-          </div>
-          <div class="col-sm-1">
-            <p class="mb-0"><%= link_to '<i class="fa-solid fa-wrench text-danger"></i>'.html_safe, edit_user_registration_path(current_user) %></p>
-          </div>
+<div class="col-lg-8">
+  <div class="card mb-4 bg-white">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-3">
+          <p class="mb-0">UserName</p>
         </div>
-        <hr>
-        <div class="row">
-          <div class="col-sm-3">
-            <p class="mb-0">Email</p>
-          </div>
-          <div class="col-sm-8">
-            <p class="text-muted mb-0"><%= @user.email %></p>
-          </div>
-          <div class="col-sm-1">
-            <p class="mb-0"><%= link_to '<i class="fa-solid fa-wrench text-danger"></i>'.html_safe, edit_user_registration_path(current_user) %></p>
-          </div>
+        <div class="col-sm-8">
+          <p class="text-muted mb-0"><%= @user.name %></p>
         </div>
-        <hr>
-        <div class="row">
-          <div class="col-sm-3">
-            <p class="mb-0">Password</p>
-          </div>
-          <div class="col-sm-7">
-            <p class="text-muted mb-0">••••••••</p>
-          </div>
-          <div class="col-sm-1">
-            <p class="mb-0"><%= link_to '<i class="fa-regular fa-eye"></i>'.html_safe, edit_user_password_path(current_user) %></p>
-          </div>
-          <div class="col-sm-1">
-            <p class="mb-0"><%= link_to '<i class="fa-solid fa-wrench text-danger"></i>'.html_safe, edit_user_password_path(current_user) %></p>
-          </div>
-        </div>
-        <hr>
-        <div class="row">
-          <div class="col-sm-3">
-            <p class="mb-0">Description</p>
-          </div>
-          <div class="col-sm-8">
-            <p class="text-muted mb-0">A good laugh is sunshine in the house. Everyone has seen the serious side of myself and sometimes I need to take a chill pill and have a good laugh. That's who I am as a person.</p>
-          </div>
-          <div class="col-sm-1">
-
-          </div>
+        <div class="col-sm-1">
+          <p class="mb-0"><%= link_to '<i class="fa-solid fa-wrench text-danger"></i>'.html_safe, edit_user_registration_path(current_user) %></p>
         </div>
       </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-6">
-        <h2>Aircrafts</h2>
-        <div class="card mb-4 mb-md-0">
-          <div class="card-body">
-            <%# <%= render card %> %>
-          </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-3">
+          <p class="mb-0">Email</p>
         </div>
+        <div class="col-sm-8">
+          <p class="text-muted mb-0"><%= @user.email %></p>
+        </div>
+        <div class="col-sm-1">
+          <p class="mb-0"><%= link_to '<i class="fa-solid fa-wrench text-danger"></i>'.html_safe, edit_user_registration_path(current_user) %></p>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-3">
+          <p class="mb-0">Password</p>
+        </div>
+        <div class="col-sm-7">
+          <p class="text-muted mb-0">••••••••</p>
+        </div>
+        <div class="col-sm-1">
+          <p class="mb-0"><%= link_to '<i class="fa-regular fa-eye"></i>'.html_safe, edit_user_password_path(current_user) %></p>
+        </div>
+        <div class="col-sm-1">
+          <p class="mb-0"><%= link_to '<i class="fa-solid fa-wrench text-danger"></i>'.html_safe, edit_user_password_path(current_user) %></p>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-3">
+          <p class="mb-0">Description</p>
+        </div>
+        <div class="col-sm-8">
+          <p class="text-muted mb-0">A good laugh is sunshine in the house. Everyone has seen the serious side of myself and sometimes I need to take a chill pill and have a good laugh. That's who I am as a person.</p>
+        </div>
+        <div class="col-sm-1">
 
-        <h2>Others</h2>
-        <div class="card mb-4 mb-md-0">
-          <div class="card-body">
-            <%# <%= render card %> %>
-          </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
+<div class="row">
+  <% if current_user == @user %>
+      <% if @bookings.length > 0 %>
+        <h2 class='mt-2'>My bookings</h2>
+        <div class="border rounded p-3">
+          <div class="d-flex w-100 flex-column gap-2 p-2">
+            <% @bookings.each do |booking| %>
+                <%= render 'booking_card', booking: booking %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      <% if @my_bookings.length > 0 %>
+        <h2 class='mt-2'>Bookings</h2>
+        <div class="border rounded p-3">
+          <div class="d-flex w-100 flex-column gap-2 p-2">
+            <% @my_bookings.each do |booking| %>
+                <%= render 'booking_card', booking: booking %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+  <% end %>
+  <% if @aircrafts.length > 0%>
+    <h2>Aircrafts</h2>
+    <div class="border rounded p-3">
+      <div class="d-flex w-100 flex-wrap gap-1">
+        <% @aircrafts.each do |aircraft| %>
+            <%= render 'aircrafts/aircraft_card', aircraft: aircraft %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 </div>
