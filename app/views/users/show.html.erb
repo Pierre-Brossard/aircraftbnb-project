@@ -115,15 +115,17 @@
   <% if @aircrafts.length > 0%>
   <div class="d-flex justify-content-between">
       <h2>Aircrafts</h2>
-      <% if current_user == @user %>
-        <%= link_to '<i class="fa-solid fa-plus"></i>'.html_safe, new_aircraft_path, class: 'h3 text-primary' %>
-      <% end %>
   </div>
 
     <div class="border rounded p-3">
       <div class="d-flex w-100 flex-wrap gap-1">
         <% @aircrafts.each do |aircraft| %>
             <%= render 'aircrafts/aircraft_card', aircraft: aircraft %>
+        <% end %>
+        <% if current_user == @user %>
+          <div class="aircraft-card card mt-4 rounded-4 d-flex flex-column justify-content-center align-items-center" style="font-size: 6em;" >
+            <%= link_to '<i class="fa-solid fa-plus"></i>'.html_safe, new_aircraft_path, class: 'text-primary'%>
+          </div>
         <% end %>
       </div>
     </div>
