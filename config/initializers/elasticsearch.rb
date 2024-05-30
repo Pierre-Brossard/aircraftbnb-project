@@ -1,8 +1,6 @@
-Elasticsearch::Model.client = Elasticsearch::Client.new(
-  url: ENV['BONSAI_URL'],
-  transport_options: {
-    request: { timeout: 5 },
-    pool: { size: 10, timeout: 30 }
-  },
-  log: true
-)
+if Rails.env == 'production'
+  url = ENV["BONSAI_URL"]
+  transport_options = { request: { timeout: 250 } }
+  options = { hosts: url, retry_on_failure: true, transport_options: transport_options }
+  Searchkick.client = Elasticsearch::Client.new(options)
+end
