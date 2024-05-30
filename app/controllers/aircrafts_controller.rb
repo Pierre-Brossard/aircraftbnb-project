@@ -2,7 +2,14 @@ class AircraftsController < ApplicationController
   before_action :set_aircraft, only: %i[show destroy]
 
   def index
-    @aircrafts = Aircraft.where('user_id != ?', current_user.id)
+
+    if params[:query]
+      Aircraft.reindex
+      @aircrafts = Aircraft.search(params[:query], fields: [:name, :category, :location]).to_a
+      @aircrafts = Aircraft.where(id: @aircrafts.pluck(:id))
+    else
+      @aircrafts = Aircraft.where('user_id != ?', current_user.id)
+    end
 
     @markers = @aircrafts.geocoded.map do |aircraft|
       {
@@ -12,10 +19,7 @@ class AircraftsController < ApplicationController
         marker_html: render_to_string(partial: "marker", locals: {aircraft: aircraft})
       }
     end
-    if params[:query]
-      Aircraft.reindex
-      @aircraftsFiltered = Aircraft.search(params[:query], fields: [:name, :category, :location])
-    end
+
   end
 
   def show
