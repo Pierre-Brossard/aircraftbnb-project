@@ -1,11 +1,11 @@
 <div class="row">
   <div class="card mt-4 rounded-4 p-3" style="background-image: url('<%= cl_image_path @aircraft.photo.key %>'); background-repeat: no-repeat; background-size: cover; background-position: center;">
     <h2 class="card-text text-primary text-uppercase"><strong><%= @aircraft.name %></strong></h2>
-    <div  class="aircraft-picture bg-grey w-100 border-bottom"
+    <div  class="aircraft-picture bg-grey w-100"
 
     ></div>
     <div class="d-flex flex-column card-body aircraft-category bg-light opacity-75">
-      <div class="aircraft-category-icon bg-primary shadow-sm rounded-circle p-2">
+      <div class="aircraft-category-icon bg-primary shadow-sm rounded-circle p-2 opacity-100 z-1">
         <%= image_tag("icons/" + @aircraft.category.downcase + ".svg") %>
       </div>
         <div class="row">
@@ -14,6 +14,7 @@
             <p class="card-text">PRICE : <strong class="text-success"><%= @aircraft.day_price %></strong><small> € / jour</small></p>
             <p class="card-text justify-end">RANGE : <strong><%= @aircraft.range %></strong>km</p>
             <p class="card-text justify-end">CAPACITY : <strong><%= @aircraft.capacity %></strong>p.</p>
+            <p class="card-text justify-end">Owner : <%= link_to @aircraft.user.name, user_path(@aircraft.user)%></p>
           </div>
           <div class="col-6">
             <p class="card-text justify-end">DESCRIPTION : <strong><%= @aircraft.description %></strong></p>
