@@ -10,7 +10,7 @@ gem "sprockets-rails"
 gem "devise"
 gem "omniauth"
 gem "geocoder"
-gem "elasticsearch"
+gem "elasticsearch", "~>7.10.1"
 gem "searchkick"
 
 # Use postgresql as the database for Active Record
