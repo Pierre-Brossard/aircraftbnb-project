@@ -8,11 +8,13 @@
       class: 'card-img-top img-fluid rounded-top-4 img-center'
     %>
   <% end %>
-  <div class="card-body">
-    <h4><%= aircraft.name %></h4>
-    <p class="card-text"><%= aircraft.category %></p>
-    <p class="card-text"><%= aircraft.day_price%>€ / jour</p>
-    <p class="card-text"><%= aircraft.state %></p>
+  <div class="card-body d-flex flex-column justify-content-between">
+    <div>
+      <h4><%= aircraft.name %></h4>
+      <p class="card-text"><%= aircraft.category %></p>
+      <p class="card-text"><%= aircraft.day_price%>€ / jour</p>
+      <p class="card-text"><%= aircraft.state %></p>
+    </div>
     <div>
       <%= link_to "View details", aircraft_path(aircraft), class: "btn btn-primary"%>
     </div>
