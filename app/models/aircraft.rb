@@ -20,4 +20,7 @@ class Aircraft < ApplicationRecord
 
   # link to active record
   has_one_attached :photo
+
+  # link ot searchBar
+  searchkick
 end

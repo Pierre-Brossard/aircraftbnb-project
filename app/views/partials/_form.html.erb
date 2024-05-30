@@ -1,0 +1,38 @@
+
+  <%= simple_form_for aircraft, html: {class: 'p-5 border rounded d-flex flex-column w-75 m-auto bg-light'} do |f| %>
+    <div class="row">
+      <div class="col-sm-8">
+        <%= f.input :name %>
+        <%= f.input :description %>
+        <%= f.input :day_price %>
+        <div>
+          <label class="form-label string required" for="aircraft_start">Availabilities <abbr title="required">*</abbr></label>
+          <input class="form-control string required flatpickr-input" data-controller="datepicker" type="text" name="aircraft[availabilities]" id="aircraft_availabilities" readonly="readonly">
+        </div>
+        <%= f.input :photo, as: :file %>
+        <%= f.input :location,
+          input_html: {data: {location_autocomplete_target: "location"}, class:"d-none"},
+          wrapper_html: {data: {controller: "location-autocomplete", location_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
+        %>
+      </div>
+      <div class="col-sm-4 d-flex flex-column justify-content-between">
+        <div>
+          <%= f.input :category, collection: Aircraft::CATEGORIES %>
+          <%= f.input :state, collection: Aircraft::STATES %>
+          <%= f.input :capacity %>
+          <%= f.input :range %>
+        </div>
+        <div class="d-flex flex-column justify-content-center align-items-center flex-grow-1">
+          <%= f.submit class: 'btn btn-outline-primary rounded m-auto'%>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+      </div>
+      <div class="col">
+      </div>
+      <div class="col">
+      </div>
+    </div>
+  <% end %>

@@ -2,16 +2,24 @@ class AircraftsController < ApplicationController
   before_action :set_aircraft, only: %i[show destroy]
 
   def index
-    @aircrafts = Aircraft.where('user_id != ?', current_user.id)
+
+    if params[:query]
+      Aircraft.reindex
+      @aircrafts = Aircraft.search(params[:query], fields: [:name, :category, :location]).to_a
+      @aircrafts = Aircraft.where(id: @aircrafts.pluck(:id))
+    else
+      @aircrafts = Aircraft.where('user_id != ?', current_user.id)
+    end
 
     @markers = @aircrafts.geocoded.map do |aircraft|
       {
         lat: aircraft.latitude,
         lng: aircraft.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: {aircraft: aircraft}),
-        marker_html: render_to_string(partial: "marker", locals: {aircraft: aircraft})
+        info_window_html: render_to_string(partial: "partials/info_window", locals: {aircraft: aircraft}),
+        marker_html: render_to_string(partial: "partials/marker", locals: {aircraft: aircraft})
       }
     end
+
   end
 
   def show
@@ -22,7 +30,12 @@ class AircraftsController < ApplicationController
   end
 
   def create
-    @aircraft = Aircraft.new(aircraft_params)
+    availabilities = aircraft_params[:availabilities].split(' to ')
+    air_params = aircraft_params
+    air_params.delete(:availabilities)
+    air_params[:start] = availabilities[0]
+    air_params[:end] = availabilities[1]
+    @aircraft = Aircraft.new(air_params)
     @aircraft.user = current_user
     if @aircraft.save
       redirect_to aircrafts_path
@@ -39,7 +52,7 @@ class AircraftsController < ApplicationController
   private
 
   def aircraft_params
-    params.require(:aircraft).permit(:name, :location, :category, :description, :capacity, :range, :state, :day_price, :photo,  :end, :start)
+    params.require(:aircraft).permit(:name, :location, :category, :description, :capacity, :range, :state, :day_price, :photo, :availabilities)
   end
 
   def set_aircraft
