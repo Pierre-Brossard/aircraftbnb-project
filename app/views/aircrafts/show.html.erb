@@ -36,7 +36,7 @@
     <div class="border rounded p-3">
       <div class="d-flex w-100 flex-column gap-2 p-2">
         <% @aircraft.bookings.each do |booking| %>
-            <%= render 'users/booking_card', booking: booking %>
+            <%= render 'partials/booking_card', booking: booking %>
         <% end %>
       </div>
     </div>
