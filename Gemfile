@@ -11,6 +11,8 @@ gem "devise"
 gem "omniauth"
 gem "geocoder"
 gem "elasticsearch", "~>7.10.1"
+gem "elasticsearch-model"
+gem "elasticsearch-rails"
 gem "searchkick"
 
 # Use postgresql as the database for Active Record
