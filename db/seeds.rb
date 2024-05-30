@@ -48,13 +48,13 @@ puts 'Creating 8 new aircrafts...'
     location: LOCATIONS[index],
     category: Aircraft::CATEGORIES.sample,
     description: DESCRIPTION,
-    capacity: (50..3500).to_a.sample,
+    capacity: (50..3_500).to_a.sample,
     range: (100..150_000).to_a.sample,
     state: Aircraft::STATES.sample,
     day_price: (1000..100_000).to_a.sample,
     user: [john, maria].sample,
-    start: Date.new(2024, 05, 24),
-    end: Date.new(2024, 05, 30),
+    start: Date.new(2024, (5..8).to_a.sample, (1..27).to_a.sample),
+    end: Date.new(2024, (9..12).to_a.sample, (1..27).to_a.sample),
   )
   new_aircraft.photo.attach(io: URI.open(AIRCRAFT_PATHS[index]), filename: 'aircraft_photo.png')
   new_aircraft.save!
