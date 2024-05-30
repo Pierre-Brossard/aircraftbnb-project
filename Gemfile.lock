@@ -135,6 +135,11 @@ GEM
       elasticsearch-transport (= 7.10.1)
     elasticsearch-api (7.10.1)
       multi_json
+    elasticsearch-model (7.2.1)
+      activesupport (> 3)
+      elasticsearch (~> 7)
+      hashie
+    elasticsearch-rails (8.0.0)
     elasticsearch-transport (7.10.1)
       faraday (~> 1)
       multi_json
@@ -352,6 +357,8 @@ DEPENDENCIES
   devise
   dotenv-rails
   elasticsearch (~> 7.10.1)
+  elasticsearch-model
+  elasticsearch-rails
   error_highlight (>= 0.4.0)
   font-awesome-sass (~> 6.1)
   geocoder
