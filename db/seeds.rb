@@ -33,12 +33,14 @@ LOCATIONS = ["Dallas/Fort Worth International Airport",
 
 DESCRIPTION= "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
+puts 'Deleting Aircrafts and Bookings...'
 Booking.delete_all
 Aircraft.delete_all
-User.delete_all
 
-user = User.create!(name: 'John Doe', email: 'john@gmail.com', password: 'topsecret', password_confirmation: 'topsecret')
-user_bis = User.create!(name: 'Maria', email: 'maria@gmail.com', password: 'topsecret', password_confirmation: 'topsecret')
+john = User.find_by name: 'John Doe'
+maria = User.find_by name: 'Maria'
+
+puts 'Creating 8 new aircrafts...'
 
 (0..7).each do |index|
   new_aircraft = Aircraft.new(
@@ -46,20 +48,21 @@ user_bis = User.create!(name: 'Maria', email: 'maria@gmail.com', password: 'tops
     location: LOCATIONS[index],
     category: Aircraft::CATEGORIES.sample,
     description: DESCRIPTION,
-    capacity: (50..3500).to_a.sample,
+    capacity: (50..3_500).to_a.sample,
     range: (100..150_000).to_a.sample,
     state: Aircraft::STATES.sample,
     day_price: (1000..100_000).to_a.sample,
-    user: [user, user_bis].sample,
-    start: Date.new(2024, 05, 24),
-    end: Date.new(2024, 05, 30),
+    user: [john, maria].sample,
+    start: Date.new(2024, (5..8).to_a.sample, (1..27).to_a.sample),
+    end: Date.new(2024, (9..12).to_a.sample, (1..27).to_a.sample),
   )
   new_aircraft.photo.attach(io: URI.open(AIRCRAFT_PATHS[index]), filename: 'aircraft_photo.png')
   new_aircraft.save!
 end
 
+puts 'Creating 2 new bookings...'
 
-buyer = User.create!(name: 'iamabuyer', email: 'buy@gmail.com', password: 'topsecret', password_confirmation: 'topsecret')
+buyer = User.find_by name: 'iamabuyer'
 aircraft = Aircraft.last
 
 Booking.create!(
@@ -81,3 +84,5 @@ Booking.create!(
   aircraft: aircraft,
   user: buyer
 )
+
+puts 'Done !'
