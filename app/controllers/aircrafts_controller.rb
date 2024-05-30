@@ -12,6 +12,10 @@ class AircraftsController < ApplicationController
         marker_html: render_to_string(partial: "marker", locals: {aircraft: aircraft})
       }
     end
+    if params[:query]
+      Aircraft.reindex
+      @aircraftsFiltered = Aircraft.search(params[:query], fields: [:name, :category, :location])
+    end
   end
 
   def show
