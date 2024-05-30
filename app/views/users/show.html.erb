@@ -79,67 +79,69 @@
   </div>
 </div>
 
-<div data-controller="tabs">
-  <ul class="list-inline tabs-underlined">
-    <li>
-      <a href="#" class="tab-underlined" data-action="tabs#switch" data-tabs-target="tab" data-target-id="content-bookings">
-        Bookings
-        <% pending_bookings_count = @my_bookings.count { |booking| booking.pending == 'pending' } %>
-        <% if pending_bookings_count > 0 %>
-          <span class="badge bg-danger rounded-circle"><%= pending_bookings_count %></span>
-        <% end %>
-      </a>
-    </li>
-    <li>
-      <a href="#" class="tab-underlined" data-action="tabs#switch" data-tabs-target="tab" data-target-id="content-my-bookings">My Bookings</a>
-    </li>
-    <li>
-      <a href="#" class="tab-underlined active" data-action="tabs#switch" data-tabs-target="tab" data-target-id="content-aircrafts">Aircrafts</a>
-    </li>
-  </ul>
+<% if current_user == @user %>
+  <div data-controller="tabs">
+    <ul class="list-inline tabs-underlined">
+      <li>
+        <a href="#" class="tab-underlined" data-action="tabs#switch" data-tabs-target="tab" data-target-id="content-bookings">
+          Bookings
+          <% pending_bookings_count = @my_bookings.count { |booking| booking.pending == 'pending' } %>
+          <% if pending_bookings_count > 0 %>
+            <span class="badge bg-danger rounded-circle"><%= pending_bookings_count %></span>
+          <% end %>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="tab-underlined" data-action="tabs#switch" data-tabs-target="tab" data-target-id="content-my-bookings">My Bookings</a>
+      </li>
+      <li>
+        <a href="#" class="tab-underlined active" data-action="tabs#switch" data-tabs-target="tab" data-target-id="content-aircrafts">Aircrafts</a>
+      </li>
+    </ul>
 
-  <div class="row">
-    <% if current_user == @user %>
-    <div id="content-my-bookings" class="tab-content" data-tabs-target="content" style="display:none;">
-        <% if @bookings.length > 0 %>
-          <div class="border rounded p-3">
-            <div class="d-flex w-100 flex-column gap-2 p-2">
-              <% @bookings.each do |booking| %>
-                  <%= render 'partials/booking_card', booking: booking %>
-              <% end %>
+    <div class="row">
+      <% if current_user == @user %>
+      <div id="content-my-bookings" class="tab-content" data-tabs-target="content" style="display:none;">
+          <% if @bookings.length > 0 %>
+            <div class="border rounded p-3">
+              <div class="d-flex w-100 flex-column gap-2 p-2">
+                <% @bookings.each do |booking| %>
+                    <%= render 'partials/booking_card', booking: booking %>
+                <% end %>
+              </div>
             </div>
-          </div>
-        <% end %>
-    </div>
+          <% end %>
+      </div>
 
-      <div id="content-bookings" class="tab-content" data-tabs-target="content" style="display:block;">
-        <% if @my_bookings.length > 0 %>
+        <div id="content-bookings" class="tab-content" data-tabs-target="content" style="display:block;">
+          <% if @my_bookings.length > 0 %>
+            <div class="border rounded p-3">
+              <div class="d-flex w-100 flex-column gap-2 p-2">
+                <% @my_bookings.each do |booking| %>
+                    <%= render 'partials/booking_card', booking: booking %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
+      <div id="content-aircrafts" class="tab-content" data-tabs-target="content" style="display:none;">
+        <% if @aircrafts.length > 0 %>
           <div class="border rounded p-3">
-            <div class="d-flex w-100 flex-column gap-2 p-2">
-              <% @my_bookings.each do |booking| %>
-                  <%= render 'partials/booking_card', booking: booking %>
+            <div class="d-flex w-100 flex-wrap gap-1">
+              <% @aircrafts.each do |aircraft| %>
+                  <%= render 'partials/aircraft_card', aircraft: aircraft %>
+              <% end %>
+              <% if current_user == @user %>
+                <div class="aircraft-card card mt-4 rounded-4 d-flex flex-column justify-content-center align-items-center" style="font-size: 6em;" >
+                  <%= link_to '<i class="fa-solid fa-plus"></i>'.html_safe, new_aircraft_path, class: 'text-primary'%>
+                </div>
               <% end %>
             </div>
           </div>
         <% end %>
       </div>
-    <% end %>
-
-    <div id="content-aircrafts" class="tab-content" data-tabs-target="content" style="display:none;">
-      <% if @aircrafts.length > 0 %>
-        <div class="border rounded p-3">
-          <div class="d-flex w-100 flex-wrap gap-1">
-            <% @aircrafts.each do |aircraft| %>
-                <%= render 'partials/aircraft_card', aircraft: aircraft %>
-            <% end %>
-            <% if current_user == @user %>
-              <div class="aircraft-card card mt-4 rounded-4 d-flex flex-column justify-content-center align-items-center" style="font-size: 6em;" >
-                <%= link_to '<i class="fa-solid fa-plus"></i>'.html_safe, new_aircraft_path, class: 'text-primary'%>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
     </div>
   </div>
-</div>
+<% end %>
