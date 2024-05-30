@@ -92,7 +92,13 @@
 <div data-controller="tabs">
   <ul class="list-inline tabs-underlined">
     <li>
-      <a href="#" class="tab-underlined" data-action="tabs#switch" data-tabs-target="tab" data-target-id="content-bookings">Bookings</a>
+      <a href="#" class="tab-underlined" data-action="tabs#switch" data-tabs-target="tab" data-target-id="content-bookings">
+        Bookings
+        <% pending_bookings_count = @my_bookings.count { |booking| booking.pending == 'pending' } %>
+        <% if pending_bookings_count > 0 %>
+          <span class="badge bg-danger rounded-circle"><%= pending_bookings_count %></span>
+        <% end %>
+      </a>
     </li>
     <li>
       <a href="#" class="tab-underlined" data-action="tabs#switch" data-tabs-target="tab" data-target-id="content-my-bookings">My Bookings</a>
