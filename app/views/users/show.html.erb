@@ -15,16 +15,6 @@
         </div>
       </div>
     </div>
-    <%# <div class="card mb-4 mb-lg-0">
-      <div class="card-body p-0">
-        <ul class="list-group list-group-flush rounded-3">
-          <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-            <i class="fa-solid fa-plane fa-lg text-primary"></i>
-            <p class="mb-0">www.flybnb.com</p>
-          </li>
-        </ul>
-      </div>
-    </div> %>
   </div>
 
 <div class="col-lg-8">
@@ -115,7 +105,7 @@
           <div class="border rounded p-3">
             <div class="d-flex w-100 flex-column gap-2 p-2">
               <% @bookings.each do |booking| %>
-                  <%= render 'booking_card', booking: booking %>
+                  <%= render 'partials/booking_card', booking: booking %>
               <% end %>
             </div>
           </div>
@@ -127,7 +117,7 @@
           <div class="border rounded p-3">
             <div class="d-flex w-100 flex-column gap-2 p-2">
               <% @my_bookings.each do |booking| %>
-                  <%= render 'booking_card', booking: booking %>
+                  <%= render 'partials/booking_card', booking: booking %>
               <% end %>
             </div>
           </div>
@@ -140,7 +130,7 @@
         <div class="border rounded p-3">
           <div class="d-flex w-100 flex-wrap gap-1">
             <% @aircrafts.each do |aircraft| %>
-                <%= render 'aircrafts/aircraft_card', aircraft: aircraft %>
+                <%= render 'partials/aircraft_card', aircraft: aircraft %>
             <% end %>
             <% if current_user == @user %>
               <div class="aircraft-card card mt-4 rounded-4 d-flex flex-column justify-content-center align-items-center" style="font-size: 6em;" >
