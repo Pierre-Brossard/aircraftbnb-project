@@ -9,7 +9,7 @@
     <% else %>
       <% @aircrafts.each do |aircraft| %>
         <li class="col-sm-5" >
-          <%= render 'aircraft_card', aircraft: aircraft %>
+          <%= link_to render('aircraft_card', aircraft: aircraft ), aircraft_path(aircraft)%>
         </li>
       <% end %>
     <% end %>
