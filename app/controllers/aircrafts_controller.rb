@@ -30,7 +30,12 @@ class AircraftsController < ApplicationController
   end
 
   def create
-    @aircraft = Aircraft.new(aircraft_params)
+    availabilities = aircraft_params[:availabilities].split(' to ')
+    air_params = aircraft_params
+    air_params.delete(:availabilities)
+    air_params[:start] = availabilities[0]
+    air_params[:end] = availabilities[1]
+    @aircraft = Aircraft.new(air_params)
     @aircraft.user = current_user
     if @aircraft.save
       redirect_to aircrafts_path
@@ -47,7 +52,7 @@ class AircraftsController < ApplicationController
   private
 
   def aircraft_params
-    params.require(:aircraft).permit(:name, :location, :category, :description, :capacity, :range, :state, :day_price, :photo,  :end, :start)
+    params.require(:aircraft).permit(:name, :location, :category, :description, :capacity, :range, :state, :day_price, :photo, :availabilities)
   end
 
   def set_aircraft
