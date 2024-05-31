@@ -15,9 +15,9 @@ class BookingsController < ApplicationController
     @booking = Booking.new(b_params)
     @booking.aircraft = @aircraft
     if @booking.save
-      redirect_to root_path
+      redirect_to user_path(current_user)
     else
-      render :new, status: :unprocessable_entity
+      redirect_to aircraft_path(@aircraft), status: :unprocessable_entity
     end
   end
 
