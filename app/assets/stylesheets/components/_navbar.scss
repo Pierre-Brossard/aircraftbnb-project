@@ -1,15 +1,80 @@
-header{
-  text-align: center;
-  display: flex;
-  justify-content: space-between;
-  padding: 2em;
-  font-size: 1.2em;
-
-  a:hover{
-    color: rgb(205, 140, 19);
-  }
+.log-btn{
+  // margin: 0 2em;
 }
 
-.log-btn{
-  margin: 0 2em;
+.navbar-flybnb {
+  justify-content: space-between;
+  background: white;
+}
+
+.navbar-flybnb .navbar-collapse {
+  flex-grow: 0;
+}
+
+.navbar-flybnb .navbar-brand img {
+  // width: 100%;
+  height: 3em;
+  margin: 1rem;
+}
+
+.container-fluid {
+  padding: 0 3em;
+}
+
+
+// ____________
+
+/* Style général pour le dropdown */
+.nav-item.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Style pour l'avatar */
+.avatar {
+  width: 3em;
+  height: 3em;
+  cursor: pointer;
+  transition: transform 0.3s;
+  outline: 6px solid #007bff;
+}
+
+/* Style pour le menu déroulant */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 8px;
+  padding: 10px 0;
+  min-width: 200px;
+  transition: opacity 0.3s;
+}
+
+/* Style pour les éléments du menu */
+
+.dropdown-item {
+  color: #333;
+  padding: 10px 20px;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s, color 0.3s;
+  border-radius: 4px;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+  color: #007bff;
+}
+
+/* Style spécifique pour le bouton de déconnexion */
+.log-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.log-btn i {
+  margin-left: 10px;
 }
