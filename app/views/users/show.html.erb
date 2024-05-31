@@ -129,12 +129,12 @@
       <div id="content-aircrafts" class="tab-content" data-tabs-target="content" style="display:none;">
         <% if @aircrafts.length > 0 %>
           <div class="border rounded p-3">
-            <div class="d-flex w-100 flex-wrap gap-1">
+            <div class="aircrafts-cards-grid">
               <% @aircrafts.each do |aircraft| %>
                   <%= render 'partials/aircraft_card', aircraft: aircraft %>
               <% end %>
               <% if current_user == @user %>
-                <div class="aircraft-card card mt-4 rounded-4 d-flex flex-column justify-content-center align-items-center" style="font-size: 6em;" >
+                <div class="aircraft-card card rounded-4 d-flex flex-column justify-content-center align-items-center" style="font-size: 6em;" >
                   <%= link_to '<i class="fa-solid fa-plus"></i>'.html_safe, new_aircraft_path, class: 'text-primary'%>
                 </div>
               <% end %>
