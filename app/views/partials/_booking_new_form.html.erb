@@ -19,7 +19,7 @@
     <%= f.hidden_field :user_id, value: current_user.id %>
     <%= f.hidden_field :total_price, id: "total-price" %>
     <h5 class="text-danger" id="alert" style="display: none">Merci de rentrer des dates valides</h3>
-    <%= f.submit "Reserve", disable_with: 'Submiting...', id: "submit", class: 'btn btn-outline-success' %>
+    <%= f.submit "Book an aircraft", disable_with: 'Submiting...', id: "submit", class: 'btn btn-outline-success' %>
     <input type="hidden" id="aircraft-start" value=<%= aircraft.start %>>
     <input type="hidden" id="aircraft-end" value=<%= aircraft.end %>>
   <% end %>
