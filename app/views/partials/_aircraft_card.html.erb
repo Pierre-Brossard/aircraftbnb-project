@@ -1,17 +1,22 @@
 <div class="aircraft-card card rounded-4">
-  <% if aircraft.photo.attached? %>
-    <%=
-      cl_image_tag aircraft.photo.key,
-      height: 300,
-      width: 400,
-      crop: :fill,
-      class: 'card-img-top img-fluid rounded-top-4 img-center'
-    %>
-  <% end %>
-  <div class="card-body d-flex flex-column justify-content-between">
-    <div class="aircraft-category-icon bg-primary shadow-sm rounded-circle">
+  <div>
+    <% if aircraft.photo.attached? %>
+      <%=
+        cl_image_tag aircraft.photo.key,
+        height: 300,
+        width: 400,
+        crop: :fill,
+        class: 'card-img-top img-fluid rounded-4 pt-1 px-1 img-center'
+      %>
+    <% end %>
+  </div>
+
+  <div class="card-body">
+
+    <div class="aircraft-category-icon">
       <%= (Aircraft::CATEGORY_ICONS[aircraft.category.downcase.to_sym]).html_safe %>
     </div>
+
       <h4 class="card-text text-secondary"><%= aircraft.name %></h4>
       <hr>
       <div class="row ">
