@@ -1,4 +1,15 @@
 .search-bar {
   display: flex;
   flex-direction: row;
+  width: 50vw;
+  margin-right: -10em;
+
+  .form-control {
+    height: 3em;
+    padding: 0 2em;
+  }
+
+  .btn {
+    padding:0 2em;
+  }
 }

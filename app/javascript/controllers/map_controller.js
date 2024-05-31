@@ -27,6 +27,7 @@ export default class extends Controller {
       new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
         mapboxgl: mapboxgl,
+        language: "en",
       })
     );
   }
