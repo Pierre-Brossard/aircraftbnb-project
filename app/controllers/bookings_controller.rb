@@ -8,7 +8,11 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @booking = Booking.new(booking_params)
+    dates = params[:dates].split(' to ')
+    b_params = booking_params
+    b_params[:start_date] = dates[0]
+    b_params[:end_date] = dates[1]
+    @booking = Booking.new(b_params)
     @booking.aircraft = @aircraft
     if @booking.save
       redirect_to root_path
@@ -40,7 +44,7 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date, :pending, :total_price, :user_id)
+    params.require(:booking).permit(:dates, :pending, :total_price, :user_id)
   end
 
   def set_aircraft

@@ -1,0 +1,26 @@
+<div data-controller="add-bookings">
+  <%= simple_form_for [aircraft, booking], html: {class: 'p-1 d-flex flex-column justify-center'} do |f|  %>
+  <div class="row">
+    <div class="col">
+      <h5>Disponibilities:</h5><p>from <strong><%= aircraft.start %></strong><br>to <strong><%= aircraft.end %></strong></p>
+    </div>
+    <div class="col">
+      <label class="form-label string required" for="dates">Dates
+        <abbr title="required">*</abbr>
+      </label>
+      <input class="form-control string required flatpickr-input" data-controller="datepicker" data-action="input->add-bookings#set_total_price input->add-bookings#check_dates"
+      type="text" name="dates" id="dates" readonly="readonly">
+      <input type="hidden" id="day-price" value=<%= aircraft.day_price %>>
+      <p class=" mt-1">Total price:<br><span id="total-price-display"> 0 € </span></p>
+    </div>
+
+  </div>
+    <%= f.hidden_field :pending, value: "pending" %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :total_price, id: "total-price" %>
+    <h5 class="text-danger" id="alert" style="display: none">Merci de rentrer des dates valides</h3>
+    <%= f.submit "Reserve", disable_with: 'Submiting...', id: "submit", class: 'btn btn-outline-success' %>
+    <input type="hidden" id="aircraft-start" value=<%= aircraft.start %>>
+    <input type="hidden" id="aircraft-end" value=<%= aircraft.end %>>
+  <% end %>
+</div>
