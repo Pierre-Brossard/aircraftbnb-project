@@ -1,4 +1,4 @@
-<div class="aircraft-card card mt-4 rounded-4">
+<div class="aircraft-card card rounded-4">
   <% if aircraft.photo.attached? %>
     <%=
       cl_image_tag aircraft.photo.key,
@@ -9,16 +9,20 @@
     %>
   <% end %>
   <div class="card-body d-flex flex-column justify-content-between">
-    <div>
-      <h4><%= aircraft.name %></h4>
+    <div class="aircraft-category-icon bg-primary shadow-sm rounded-circle">
+      <i class="fa-solid fa-plane text-white"></i>
+    </div>
+      <h4 class="card-text text-secondary"><%= aircraft.name %></h4>
+      <hr>
       <div class="row ">
         <p class="col card-text"><%= aircraft.category %></p>
-        <p class="col text-end card-text text-primary"><%= aircraft.user.name %></p>
+        <p class="col card-text text-end text-secondary">Owner : <%= aircraft.user.name %></p>
       </div>
-      <p class="card-text"><%= aircraft.day_price%>€ / jour</p>
+      <p class="card-text fw-bold"><%= aircraft.day_price%>€ / jour</p>
+      <hr>
+      <div class="aircraft-card-description">
+        <p class="card-text text-secondary"><i class="fa-solid fa-location-crosshairs"></i> <%= aircraft.location %></p>
+      </div>
 
-      <p class="card-text text-secondary"><%= aircraft.location %></p>
-
-    </div>
   </div>
 </div>
