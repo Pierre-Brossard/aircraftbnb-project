@@ -10,7 +10,7 @@
   <% end %>
   <div class="card-body d-flex flex-column justify-content-between">
     <div class="aircraft-category-icon bg-primary shadow-sm rounded-circle">
-      <i class="fa-solid fa-plane text-white"></i>
+      <%= (Aircraft::CATEGORY_ICONS[aircraft.category.downcase.to_sym]).html_safe %>
     </div>
       <h4 class="card-text text-secondary"><%= aircraft.name %></h4>
       <hr>
