@@ -1,9 +1,9 @@
 
-<%= form_with url: path, method: :get, class: "d-flex" do %>
+<%= form_with url: path, method: :get, class:"search-bar" do %>
   <%= text_field_tag :query,
       params[:query],
       class: "form-control me-2",
-      placeholder: "Type a keyword"
+      placeholder: "What do you want?"
   %>
-    <%= submit_tag "Search", name: "", class: "btn btn-outline-success" %>
+    <%= submit_tag "Search", name: "", class: "btn btn-outline-primary" %>
 <% end %>
