@@ -1,6 +1,5 @@
 class AircraftsController < ApplicationController
   before_action :set_aircraft, only: %i[show destroy]
-
   def index
 
     if params[:query]
@@ -24,6 +23,7 @@ class AircraftsController < ApplicationController
 
   def show
     @booking = Booking.new
+    @aircraftCategories = Aircraft::CATEGORY_ICONS
   end
 
   def new
