@@ -1,9 +1,8 @@
-
 <%= form_with url: path, method: :get, class:"search-bar" do %>
   <%= text_field_tag :query,
       params[:query],
-      class: "form-control me-2",
+      class: "form-control rounded-start-pill",
       placeholder: "What do you want?"
   %>
-    <%= submit_tag "Search", name: "", class: "btn btn-outline-primary" %>
+    <%= submit_tag "Search", name: "", class: "btn btn-primary rounded-end-pill" %>
 <% end %>
