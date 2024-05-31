@@ -5,6 +5,6 @@
   </h4>
 </div> %>
 
-<div class="badge rounded-pill bg-primary fs-6 text-capitalize w-25">
-  <%= image_tag("icons/" + aircraft.category.downcase + ".svg") %>
+<div class="badge rounded-pill bg-primary fs-6 text-capitalize">
+  <%= (Aircraft::CATEGORY_ICONS[aircraft.category.downcase.to_sym]).html_safe %>
 </div>
