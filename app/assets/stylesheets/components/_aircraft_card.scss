@@ -4,10 +4,14 @@
   grid-gap: 20px;
 }
 
+.aircrafts-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 2vh;
+}
+
 .aircraft-card {
-  flex-grow: 1;
-  min-height: ;
-  max-height: 450px;
+  height: 450px;
 
   &:hover {
     transform: scale(1.02);
@@ -15,10 +19,6 @@
     background-color: rgba(49, 100, 238, 0.2);
     color: $primary;
     transition: 0.3s ease;
-  }
-
-  p {
-    // line-height: 0.8em;
   }
 
   h4 {
@@ -91,7 +91,4 @@
 
 .aircraft-card-description {
   width: 100%;
-  overflow: hidden;
-  // white-space: nowrap;
-  text-overflow: ellipsis;
 }
