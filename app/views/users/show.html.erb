@@ -131,7 +131,7 @@
           <div class="border rounded p-3">
             <div class="aircrafts-cards-grid">
               <% @aircrafts.each do |aircraft| %>
-                  <%= render 'partials/aircraft_card', aircraft: aircraft %>
+                  <%= link_to render('partials/aircraft_card', aircraft: aircraft ), aircraft_path(aircraft)%>
               <% end %>
               <% if current_user == @user %>
                 <div class="aircraft-card card rounded-4 d-flex flex-column justify-content-center align-items-center" style="font-size: 6em;" >
