@@ -22,6 +22,7 @@ class AircraftsController < ApplicationController
   end
 
   def show
+    @booking = Booking.new
     @aircraftCategories = Aircraft::CATEGORY_ICONS
   end
 

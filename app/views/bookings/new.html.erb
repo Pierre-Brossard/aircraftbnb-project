@@ -3,20 +3,11 @@
   <%= simple_form_for [@aircraft, @booking], html: {class: 'p-3 border rounded d-flex flex-column justify-center'} do |f|  %>
     <%= f.hidden_field :pending, value: "pending" %>
     <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.input :start_date, as: :string, input_html:
-        {data:
-          {
-            controller: "datepicker",
-            action: 'input->add-bookings#set_total_price input->add-bookings#check_dates'
-          }
-        }%>
-    <%= f.input :end_date, as: :string, input_html:
-        {data:
-          {
-            controller: "datepicker",
-            action: 'input->add-bookings#set_total_price input->add-bookings#check_dates'
-          }
-        } %>
+    <label class="form-label string required" for="dates">Dates
+      <abbr title="required">*</abbr>
+    </label>
+    <input class="form-control string required flatpickr-input" data-controller="datepicker" data-action="input->add-bookings#set_total_price input->add-bookings#check_dates"
+    type="text" name="dates" id="dates" readonly="readonly">
     <input type="hidden" id="day-price" value=<%= @aircraft.day_price %>>
     <p>Total price: </p>
     <p id="total-price-display"></p>
@@ -26,5 +17,4 @@
     <input type="hidden" id="aircraft-start" value=<%= @aircraft.start %>>
     <input type="hidden" id="aircraft-end" value=<%= @aircraft.end %>>
   <% end %>
-
 </div>

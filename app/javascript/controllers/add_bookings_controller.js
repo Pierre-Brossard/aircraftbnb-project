@@ -4,21 +4,18 @@ import { Controller } from '@hotwired/stimulus';
 export default class extends Controller {
   set_total_price() {
     // calcul du differentiel de jour
-    const endDate =
-      document.getElementById('booking_end_date')._flatpickr.selectedDates[0];
+    const dates = document.getElementById("dates")._flatpickr.selectedDates;
+    const endDate = dates[1];
+    const startDate = dates[0];
 
-    const startDate =
-      document.getElementById('booking_start_date')._flatpickr.selectedDates[0];
 
-    const diffTime = Math.abs(endDate - startDate);
-    const total_days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    const diffTime = endDate - startDate;
+    const total_days = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
 
     // calcul du prix total en fonction des jours
     const dayPrice = parseInt(document.getElementById('day-price').value, 10);
-    let totalPrice;
-    if (endDate || startDate) {
-      totalPrice = dayPrice * total_days;
-    }
+
+    let totalPrice = dayPrice * total_days;
 
     if (totalPrice) {
       document.getElementById(
@@ -33,13 +30,10 @@ export default class extends Controller {
   }
 
   check_dates() {
-    const endDate = new Date(
-      document.getElementById('booking_end_date')._flatpickr.selectedDates[0]
-    );
-
-    const startDate = new Date(
-      document.getElementById('booking_start_date')._flatpickr.selectedDates[0]
-    );
+    const dates =
+      document.getElementById("dates")._flatpickr.selectedDates;
+    const endDate = dates[1]
+    const startDate = dates[0];
 
     const aircraftEndDate = new Date(
       document.getElementById('aircraft-end').value
