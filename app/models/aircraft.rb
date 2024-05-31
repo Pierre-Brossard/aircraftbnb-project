@@ -4,6 +4,12 @@ class Aircraft < ApplicationRecord
 
   CATEGORIES = ['Planes', 'Helicopter', 'Zeppelin']
   STATES =['Used', 'Broken', 'Can fly', 'Perfect condition']
+  CATEGORY_ICONS = {
+    planes: '<i class="fa-solid fa-plane" style="color: #ffffff;"></i>',
+    helicopter: '<i class="fa-solid fa-helicopter" style="color: #ffffff;"></i>',
+    zeppelin: '<i class="fa-solid fa-cloud" style="color: #ffffff;"></i>'
+  }
+
   belongs_to :user
   has_many :bookings, dependent: :destroy
 

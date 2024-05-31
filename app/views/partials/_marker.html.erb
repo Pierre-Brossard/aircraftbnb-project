@@ -6,5 +6,5 @@
 </div> %>
 
 <div class="badge rounded-pill bg-primary fs-6 text-capitalize">
-  <i class="fa-solid fa-helicopter-symbol"></i> - <%= aircraft.name %>
+  <%= (Aircraft::CATEGORY_ICONS[aircraft.category.downcase.to_sym]).html_safe %>
 </div>
